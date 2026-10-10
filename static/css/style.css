@@ -1,1 +1,263 @@
 
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: dark;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #08111f;
+  color: white;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+button, input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.auth-screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background:
+    radial-gradient(ellipse at top, #1d4161, transparent 60%),
+    #08111f;
+}
+
+.auth-card {
+  width: min(100%, 390px);
+  padding: 28px;
+  background: #111e30;
+  border: 1px solid #ffffff1b;
+  border-radius: 22px;
+  box-shadow: 0 20px 70px #0005;
+}
+
+.logo {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  background: #ff902f;
+  color: #111;
+  border-radius: 17px;
+  font-size: 32px;
+}
+
+h1 {
+  font-size: 23px;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  color: #a9b8ca;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+  margin: 24px 0;
+  padding: 5px;
+  background: #091321;
+  border-radius: 12px;
+}
+
+.tabs button {
+  flex: 1;
+  padding: 11px 5px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: #a9b8ca;
+  font-size: 12px;
+}
+
+.tabs button.selected {
+  background: #24374d;
+  color: white;
+}
+
+label {
+  display: block;
+  font-size: 12px;
+  margin: 16px 0 7px;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  border: 1px solid #34445a;
+  border-radius: 10px;
+  background: #091321;
+  color: white;
+  outline: none;
+}
+
+input:focus {
+  border-color: #ff902f;
+}
+
+.primary {
+  width: 100%;
+  padding: 14px;
+  margin-top: 22px;
+  border: 0;
+  border-radius: 11px;
+  background: #ff902f;
+  color: #151515;
+  font-weight: 800;
+}
+
+#authMessage, #gameMessage {
+  min-height: 18px;
+  font-size: 12px;
+  color: #ffbd89;
+  overflow-wrap: anywhere;
+}
+
+#gameScreen {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #9bc8e8;
+  touch-action: none;
+}
+
+#game, #game canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.topbar {
+  position: absolute;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(15px + env(safe-area-inset-top)) 16px 18px;
+  background: linear-gradient(#08111fee, transparent);
+  pointer-events: none;
+}
+
+.topbar b, .topbar small {
+  display: block;
+}
+
+.topbar b {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.topbar small {
+  margin-top: 5px;
+  color: #c3d0df;
+  font-size: 11px;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  pointer-events: auto;
+}
+
+.account button {
+  border: 1px solid #ffffff40;
+  border-radius: 9px;
+  padding: 8px;
+  background: #08111fdd;
+  color: white;
+  font-size: 11px;
+}
+
+.hud {
+  position: absolute;
+  top: 100px;
+  left: 14px;
+  display: grid;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.speed-card {
+  padding: 12px;
+  border: 1px solid #ffffff24;
+  border-radius: 12px;
+  background: #08111fdc;
+  font-size: 12px;
+}
+
+.speed-card strong {
+  font-size: 30px;
+}
+
+.controls {
+  position: absolute;
+  bottom: calc(24px + env(safe-area-inset-bottom));
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding: 0 16px;
+}
+
+.controls > div {
+  display: flex;
+  gap: 8px;
+}
+
+.controls button {
+  min-width: 60px;
+  height: 60px;
+  border: 1px solid #ffffff50;
+  border-radius: 16px;
+  background: #08111fdc;
+  color: white;
+  font-weight: 800;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.controls button.active {
+  background: #ffc06e;
+  color: #111;
+}
+
+.controls .gas {
+  background: #ff902f;
+  color: #111;
+}
+
+.controls .brake {
+  font-size: 10px;
+}
+
+@media (min-width: 800px) {
+  .controls {
+    padding: 0 30px;
+  }
+}
