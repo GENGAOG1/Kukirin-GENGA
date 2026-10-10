@@ -2,4 +2,4 @@ Flask
 Flask-SocketIO
 simple-websocket
 gunicorn
-libsql-client
+libsql
