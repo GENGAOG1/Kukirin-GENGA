@@ -3,4 +3,3 @@ Flask-SocketIO
 simple-websocket
 gunicorn
 libsql
-request
