@@ -1,1 +1,83 @@
 
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="theme-color" content="#08111f">
+  <title>Scooter World</title>
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <section id="authScreen" class="auth-screen">
+    <div class="auth-card">
+      <div class="logo">⚡</div>
+      <h1>SCOOTER WORLD</h1>
+      <p class="subtitle">Deine Welt. Dein Roller. Dein Fortschritt.</p>
+
+      <div class="tabs">
+        <button id="loginTab" class="selected">Anmelden</button>
+        <button id="registerTab">Account erstellen</button>
+      </div>
+
+      <form id="authForm">
+        <label for="username">Benutzername</label>
+        <input id="username" name="username" minlength="3"
+               maxlength="20" autocomplete="username"
+               required placeholder="Dein Name">
+
+        <label for="password">Passwort</label>
+        <input id="password" name="password" type="password"
+               minlength="8" maxlength="128"
+               autocomplete="current-password"
+               required placeholder="Mindestens 8 Zeichen">
+
+        <button id="submitAuth" class="primary" type="submit">
+          Anmelden
+        </button>
+      </form>
+      <p id="authMessage" role="status"></p>
+    </div>
+  </section>
+
+  <main id="gameScreen" hidden>
+    <div id="game"></div>
+
+    <header class="topbar">
+      <div>
+        <b>⚡ SCOOTER WORLD</b>
+        <small id="playerName">Rider</small>
+      </div>
+      <div class="account">
+        <span id="coins">🪙 0</span>
+        <button id="logoutBtn">Abmelden</button>
+      </div>
+    </header>
+
+    <section class="hud">
+      <div class="speed-card">
+        <strong id="speed">0</strong>
+        <small> KM/H</small>
+      </div>
+      <div class="speed-card">Roller: <b id="scooterName">Starter</b></div>
+    </section>
+
+    <div class="controls">
+      <div>
+        <button data-key="left" aria-label="Links">◀</button>
+        <button data-key="right" aria-label="Rechts">▶</button>
+      </div>
+      <div>
+        <button data-key="brake" class="brake">BREMSEN</button>
+        <button data-key="gas" class="gas">GAS ⚡</button>
+      </div>
+    </div>
+
+    <div id="gameMessage" role="status"></div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script src="/static/js/game.js"></script>
+</body>
+</html>
