@@ -1,19 +1,21 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 :root {
   color-scheme: dark;
-  font-family: system-ui, -apple-system, sans-serif;
-  background: #08111f;
-  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #101b25;
+  color: #fff;
 }
 
-body {
+html, body {
   margin: 0;
-  min-height: 100vh;
-  min-height: 100dvh;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
 }
 
 button, input {
@@ -21,7 +23,9 @@ button, input {
 }
 
 button {
+  color: inherit;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 [hidden] {
@@ -33,19 +37,19 @@ button {
   min-height: 100dvh;
   display: grid;
   place-items: center;
-  padding: 20px;
+  padding: 22px;
   background:
-    radial-gradient(ellipse at top, #1d4161, transparent 60%),
-    #08111f;
+    radial-gradient(ellipse at 50% 0%, #294c63 0%, transparent 58%),
+    linear-gradient(145deg, #101b25, #172333);
 }
 
 .auth-card {
-  width: min(100%, 390px);
+  width: min(100%, 400px);
   padding: 28px;
-  background: #111e30;
-  border: 1px solid #ffffff1b;
-  border-radius: 22px;
-  box-shadow: 0 20px 70px #0005;
+  border: 1px solid #ffffff19;
+  border-radius: 24px;
+  background: #111e2aee;
+  box-shadow: 0 28px 90px #0005;
 }
 
 .logo {
@@ -53,84 +57,87 @@ button {
   place-items: center;
   width: 58px;
   height: 58px;
-  background: #ff902f;
-  color: #111;
   border-radius: 17px;
+  background: linear-gradient(135deg, #ffbd62, #ff762e);
+  color: #1b1c20;
   font-size: 32px;
 }
 
-h1 {
-  font-size: 23px;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
+.auth-card h1 {
+  margin: 20px 0 6px;
+  font-size: 25px;
+  letter-spacing: 1.2px;
 }
 
 .subtitle {
-  color: #a9b8ca;
+  margin: 0;
+  color: #a9bacb;
   font-size: 13px;
-  line-height: 1.5;
 }
 
 .tabs {
   display: flex;
   gap: 6px;
-  margin: 24px 0;
   padding: 5px;
-  background: #091321;
+  margin: 24px 0;
   border-radius: 12px;
+  background: #09131d;
 }
 
 .tabs button {
   flex: 1;
-  padding: 11px 5px;
+  padding: 12px 5px;
   border: 0;
   border-radius: 9px;
   background: transparent;
-  color: #a9b8ca;
+  color: #9eafc0;
   font-size: 12px;
 }
 
 .tabs button.selected {
-  background: #24374d;
+  background: #2b4052;
   color: white;
 }
 
-label {
+.auth-card label {
   display: block;
+  margin: 15px 0 7px;
   font-size: 12px;
-  margin: 16px 0 7px;
 }
 
-input {
-  display: block;
+.auth-card input {
   width: 100%;
-  padding: 13px;
-  border: 1px solid #34445a;
-  border-radius: 10px;
-  background: #091321;
+  padding: 14px;
+  border: 1px solid #344657;
+  border-radius: 11px;
+  background: #0a141f;
   color: white;
   outline: none;
 }
 
-input:focus {
-  border-color: #ff902f;
+.auth-card input:focus {
+  border-color: #ff9c47;
 }
 
 .primary {
   width: 100%;
-  padding: 14px;
   margin-top: 22px;
+  padding: 14px;
   border: 0;
   border-radius: 11px;
-  background: #ff902f;
-  color: #151515;
+  background: linear-gradient(135deg, #ffc46d, #ff8436);
+  color: #1b1b1b;
   font-weight: 800;
 }
 
-#authMessage, #gameMessage {
+.primary:disabled {
+  opacity: .6;
+}
+
+#authMessage {
   min-height: 18px;
+  color: #ffbf9a;
   font-size: 12px;
-  color: #ffbd89;
   overflow-wrap: anywhere;
 }
 
@@ -138,13 +145,21 @@ input:focus {
   position: fixed;
   inset: 0;
   overflow: hidden;
-  background: #9bc8e8;
+  background: #9ac9e8;
+  isolation: isolate;
   touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-#game, #game canvas {
+#game {
   position: absolute;
   inset: 0;
+  z-index: -1;
+}
+
+#game canvas {
+  display: block;
   width: 100%;
   height: 100%;
 }
@@ -155,109 +170,360 @@ input:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: calc(15px + env(safe-area-inset-top)) 16px 18px;
-  background: linear-gradient(#08111fee, transparent);
+  gap: 8px;
+  padding: calc(12px + env(safe-area-inset-top)) 14px 24px;
+  background: linear-gradient(#0b1524dc, #0b152480, transparent);
   pointer-events: none;
 }
 
-.topbar b, .topbar small {
+.brand, .account {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.brand-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: #ff9b3f;
+  color: #191919;
+  font-size: 23px;
+}
+
+.brand b, .brand small {
   display: block;
 }
 
-.topbar b {
-  font-size: 12px;
+.brand b {
+  font-size: 11px;
   letter-spacing: 1px;
 }
 
-.topbar small {
-  margin-top: 5px;
-  color: #c3d0df;
+.brand small {
+  margin-top: 4px;
+  color: #d0dce6;
   font-size: 11px;
 }
 
 .account {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12px;
   pointer-events: auto;
 }
 
-.account button {
-  border: 1px solid #ffffff40;
-  border-radius: 9px;
-  padding: 8px;
-  background: #08111fdd;
-  color: white;
+.coin-pill, .small-button {
+  padding: 9px 11px;
+  border: 1px solid #ffffff26;
+  border-radius: 11px;
+  background: #101d2bdc;
   font-size: 11px;
 }
 
-.hud {
+.small-button {
+  padding: 9px;
+}
+
+.left-hud {
   position: absolute;
-  top: 100px;
-  left: 14px;
+  top: calc(83px + env(safe-area-inset-top));
+  left: 12px;
   display: grid;
   gap: 8px;
+  width: min(174px, 45vw);
   pointer-events: none;
+}
+
+.glass-card {
+  border: 1px solid #ffffff26;
+  border-radius: 14px;
+  background: #101d2bd9;
+  box-shadow: 0 5px 20px #0002;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .speed-card {
   padding: 12px;
-  border: 1px solid #ffffff24;
-  border-radius: 12px;
-  background: #08111fdc;
-  font-size: 12px;
 }
 
-.speed-card strong {
-  font-size: 30px;
+.eyebrow {
+  color: #9fb3c7;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 1px;
+}
+
+.speed-line {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.speed-line strong {
+  font-size: 35px;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.speed-line span {
+  color: #d1deeb;
+  font-size: 10px;
+}
+
+.info-card, .balance-card {
+  padding: 11px 12px;
+}
+
+.info-card > b {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+.status-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  color: #b8c9d8;
+  font-size: 10px;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #61e6a1;
+  box-shadow: 0 0 10px #61e6a155;
+}
+
+.balance-track {
+  height: 6px;
+  margin: 10px 0 6px;
+  overflow: hidden;
+  border-radius: 9px;
+  background: #ffffff20;
+}
+
+#balanceFill {
+  width: 50%;
+  height: 100%;
+  border-radius: inherit;
+  background: #65dfa3;
+  transition: width .08s linear;
+}
+
+#balanceText {
+  color: #d4e1ed;
+  font-size: 10px;
+}
+
+.right-hud {
+  position: absolute;
+  top: calc(83px + env(safe-area-inset-top));
+  right: 12px;
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.online-card {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px;
+  font-size: 10px;
+}
+
+.stunt-badge {
+  padding: 10px 14px;
+  border: 1px solid #ffc16b99;
+  border-radius: 12px;
+  background: #8b4d19e8;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
 }
 
 .controls {
   position: absolute;
-  bottom: calc(24px + env(safe-area-inset-bottom));
-  left: 0;
-  right: 0;
+  inset: auto 0 calc(14px + env(safe-area-inset-bottom));
   display: flex;
   align-items: end;
   justify-content: space-between;
-  padding: 0 16px;
-}
-
-.controls > div {
-  display: flex;
   gap: 8px;
+  padding: 0 14px;
+  pointer-events: none;
 }
 
-.controls button {
+.steering, .ride-controls {
+  display: flex;
+  gap: 9px;
+  align-items: end;
+  pointer-events: auto;
+}
+
+.ride-controls {
+  flex-direction: column;
+}
+
+.ride-row {
+  display: flex;
+  gap: 9px;
+}
+
+.control-button {
+  display: grid;
+  place-items: center;
   min-width: 60px;
-  height: 60px;
-  border: 1px solid #ffffff50;
-  border-radius: 16px;
-  background: #08111fdc;
-  color: white;
-  font-weight: 800;
+  height: 62px;
+  padding: 0 12px;
+  border: 1px solid #ffffff45;
+  border-radius: 18px;
+  background: #101d2be8;
+  box-shadow: 0 5px 15px #0003;
+  font-size: 17px;
+  font-weight: 850;
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
 }
 
-.controls button.active {
-  background: #ffc06e;
-  color: #111;
+.control-button.active {
+  filter: brightness(1.3);
+  transform: scale(.96);
 }
 
-.controls .gas {
-  background: #ff902f;
-  color: #111;
+.control-button.steer {
+  width: 62px;
+  font-size: 23px;
 }
 
-.controls .brake {
+.control-button.gas {
+  min-width: 94px;
+  background: linear-gradient(135deg, #ffc66e, #ff8434);
+  color: #1d1b19;
+}
+
+.control-button.brake {
+  min-width: 82px;
+  background: #c64b46;
   font-size: 10px;
 }
 
-@media (min-width: 800px) {
+.control-button.wheelie {
+  align-self: end;
+  min-width: 110px;
+  height: 49px;
+  border-color: #ffc16b80;
+  background: linear-gradient(135deg, #f9a33c, #db6430);
+  color: #20180f;
+  font-size: 12px;
+}
+
+.world-label {
+  position: absolute;
+  bottom: calc(94px + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: #101d2b8c;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+.world-label span {
+  color: #ffb35b;
+  margin: 0 4px;
+}
+
+#gameMessage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  text-shadow: 0 2px 6px #000;
+  pointer-events: none;
+}
+
+@media (max-width: 430px) {
+  .left-hud {
+    width: 144px;
+  }
+
+  .info-card, .balance-card, .speed-card {
+    padding: 9px;
+  }
+
+  .speed-line strong {
+    font-size: 29px;
+  }
+
+  .control-button {
+    min-width: 51px;
+    height: 55px;
+    padding: 0 8px;
+    border-radius: 15px;
+  }
+
+  .control-button.steer {
+    width: 51px;
+  }
+
+  .control-button.gas {
+    min-width: 76px;
+  }
+
+  .control-button.brake {
+    min-width: 69px;
+    font-size: 9px;
+  }
+
+  .control-button.wheelie {
+    min-width: 96px;
+    height: 43px;
+  }
+
   .controls {
-    padding: 0 30px;
+    padding: 0 9px;
+    gap: 5px;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 520px) {
+  .left-hud {
+    top: calc(62px + env(safe-area-inset-top));
+    gap: 5px;
+  }
+
+  .info-card {
+    display: none;
+  }
+
+  .controls {
+    bottom: calc(7px + env(safe-area-inset-bottom));
+  }
+
+  .control-button {
+    height: 48px;
+  }
+
+  .control-button.wheelie {
+    height: 38px;
+  }
+
+  .world-label {
+    bottom: calc(64px + env(safe-area-inset-bottom));
   }
 }
