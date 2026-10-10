@@ -6,7 +6,7 @@ from math import isfinite
 
 import libsql
 from flask import Flask, jsonify, render_template, request, session
-from flask_socketio import SocketIO, emit, request as socket_request
+from flask_socketio import SocketIO, emit
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
