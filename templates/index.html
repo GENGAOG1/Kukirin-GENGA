@@ -3,76 +3,94 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="theme-color" content="#08111f">
-  <title>Scooter World</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101b25">
+  <title>Scooter World 3D</title>
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
   <section id="authScreen" class="auth-screen">
-    <div class="auth-card">
+    <form id="authForm" class="auth-card">
       <div class="logo">⚡</div>
       <h1>SCOOTER WORLD</h1>
-      <p class="subtitle">Deine Welt. Dein Roller. Dein Fortschritt.</p>
+      <p class="subtitle">Ride your own world.</p>
 
       <div class="tabs">
-        <button id="loginTab" class="selected">Anmelden</button>
-        <button id="registerTab">Account erstellen</button>
+        <button id="loginTab" class="selected" type="button">Anmelden</button>
+        <button id="registerTab" type="button">Account erstellen</button>
       </div>
 
-      <form id="authForm">
-        <label for="username">Benutzername</label>
-        <input id="username" name="username" minlength="3"
-               maxlength="20" autocomplete="username"
-               required placeholder="Dein Name">
+      <label for="username">Benutzername</label>
+      <input id="username" name="username" minlength="3" maxlength="20"
+             autocomplete="username" required placeholder="Dein Name">
 
-        <label for="password">Passwort</label>
-        <input id="password" name="password" type="password"
-               minlength="8" maxlength="128"
-               autocomplete="current-password"
-               required placeholder="Mindestens 8 Zeichen">
+      <label for="password">Passwort</label>
+      <input id="password" name="password" type="password"
+             minlength="8" maxlength="128" autocomplete="current-password"
+             required placeholder="Mindestens 8 Zeichen">
 
-        <button id="submitAuth" class="primary" type="submit">
-          Anmelden
-        </button>
-      </form>
+      <button id="submitAuth" class="primary" type="submit">Anmelden</button>
       <p id="authMessage" role="status"></p>
-    </div>
+    </form>
   </section>
 
   <main id="gameScreen" hidden>
     <div id="game"></div>
 
     <header class="topbar">
-      <div>
-        <b>⚡ SCOOTER WORLD</b>
-        <small id="playerName">Rider</small>
+      <div class="brand">
+        <span class="brand-icon">⚡</span>
+        <div>
+          <b>SCOOTER WORLD</b>
+          <small id="playerName">Rider</small>
+        </div>
       </div>
       <div class="account">
-        <span id="coins">🪙 0</span>
-        <button id="logoutBtn">Abmelden</button>
+        <div class="coin-pill" id="coins">🪙 0</div>
+        <button id="logoutBtn" class="small-button">Logout</button>
       </div>
     </header>
 
-    <section class="hud">
-      <div class="speed-card">
-        <strong id="speed">0</strong>
-        <small> KM/H</small>
+    <section class="left-hud">
+      <div class="glass-card speed-card">
+        <div class="eyebrow">GESCHWINDIGKEIT</div>
+        <div class="speed-line"><strong id="speed">0</strong><span>km/h</span></div>
       </div>
-      <div class="speed-card">Roller: <b id="scooterName">Starter</b></div>
+      <div class="glass-card info-card">
+        <div class="eyebrow">DEIN ROLLER</div>
+        <b id="scooterName">Starter</b>
+        <div class="status-line"><span class="status-dot"></span> Welt aktiv</div>
+      </div>
+      <div class="glass-card balance-card">
+        <div class="eyebrow">WHEELIE-BALANCE</div>
+        <div class="balance-track"><div id="balanceFill"></div></div>
+        <small id="balanceText">Bereit</small>
+      </div>
     </section>
 
-    <div class="controls">
-      <div>
-        <button data-key="left" aria-label="Links">◀</button>
-        <button data-key="right" aria-label="Rechts">▶</button>
+    <div class="right-hud">
+      <div class="glass-card online-card">
+        <span class="status-dot"></span>
+        <span id="onlineCount">1 Spieler online</span>
       </div>
-      <div>
-        <button data-key="brake" class="brake">BREMSEN</button>
-        <button data-key="gas" class="gas">GAS ⚡</button>
+      <div id="stuntBadge" class="stunt-badge" hidden>WHEELIE!</div>
+    </div>
+
+    <div class="controls">
+      <div class="steering">
+        <button data-key="left" class="control-button steer" aria-label="Links">◀</button>
+        <button data-key="right" class="control-button steer" aria-label="Rechts">▶</button>
+      </div>
+      <div class="ride-controls">
+        <button data-key="wheelie" class="control-button wheelie">WHEELIE</button>
+        <div class="ride-row">
+          <button data-key="brake" class="control-button brake">BREMSEN</button>
+          <button data-key="gas" class="control-button gas">GAS ⚡</button>
+        </div>
       </div>
     </div>
 
+    <div class="world-label">OPEN WORLD <span>•</span> CITY &amp; COUNTRY</div>
     <div id="gameMessage" role="status"></div>
   </main>
 
